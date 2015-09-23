@@ -5,6 +5,7 @@
 body {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 form {
@@ -25,7 +26,6 @@ ul {
 
 table {
   display: inline-block;
-  margin: 0 auto;
   border: 1px solid black;
   border-radius: 1%;
 
