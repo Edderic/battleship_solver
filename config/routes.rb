@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'board#index'
+  post '/' => 'board#index'
+  post '/rerender_table' => 'board#rerender_table'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
