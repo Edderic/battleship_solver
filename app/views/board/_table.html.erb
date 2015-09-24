@@ -6,7 +6,7 @@
       <th><%= col_index %></th>
     <% end %>
   </tr>
-  <% abs_freqs.each_with_index do |row, row_index| %>
+  <% reduced_table.abs_freqs.each_with_index do |row, row_index| %>
     <tr>
       <td class='row-label'><%= row_index + 1%></th>
       <% row.each_with_index do |abs_freq, col_index| %>

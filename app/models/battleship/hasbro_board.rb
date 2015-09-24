@@ -10,15 +10,7 @@ class Battleship::HasbroBoard
     :point_at
 
   def initialize(hash={})
-    @unsunk_ships = hash.fetch(:unsunk_ships) do
-      [
-        Battleship::Ship.new(length: 2),
-        Battleship::Ship.new(length: 3),
-        Battleship::Ship.new(length: 3),
-        Battleship::Ship.new(length: 4),
-        Battleship::Ship.new(length: 5)
-      ]
-    end
+    @unsunk_ships = hash.fetch(:unsunk_ships)
 
     @hits = Battleship::PointsDecorator.new(hash.fetch(:hits) {[]})
     @sunken_points = Battleship::PointsDecorator.new(hash.fetch(:sunken_points) {[]})
@@ -71,8 +63,6 @@ class Battleship::HasbroBoard
                                          sink_pairs: @sink_pairs)
 
     tg.occupied_points_by_sink_pairs.each do |point|
-      # require 'pry'; binding.pry
-      puts point.to_s
       @hits.reject! {|hit| hit.same_as?(point) }
       sunken_points << point
     end

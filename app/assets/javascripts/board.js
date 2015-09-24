@@ -46,20 +46,37 @@ StatusHandler = function StatusHandler(status) {
   return new window[status.upcase()]()
 }
 
+function rerenderBody() {
+  var statuses = $('td[data-row]').map(function() {
+    return $(this).data('status')
+  })
+
+  var ship_ids = $.makeArray($('#ships input[type=checkbox]').map(function() { return this.id; }))
+  var ship_values = $.makeArray($('#ships input[type=checkbox]').map(function() { return this.checked; }))
+
+  var ships = []
+
+  for(var i = 0; i < ship_ids.length; i++) {
+    var ships_obj = {};
+    ships_obj[ship_ids[i]] = ship_values[i]
+    ships.push(JSON.stringify(ships_obj))
+  }
+
+  $.post("/rerender_table", {"statuses[]": $.makeArray(statuses), "ships[]": ships}, function(responseData) {
+    $('body').html(responseData)
+  }, 'html')
+}
+
 $(document).on('click', 'td[data-row]', function() {
   var oldStatus = $(this).data('status');
   var newStatusObj = StatusHandler(oldStatus).next();
-  // $(this).data('status', newStatusObj.status())
-  $(this).attr('data-status', newStatusObj.status())
-  var statuses = $('td[data-row]').map(function() {
-    return $(this).attr('data-status')
-  })
-  console.log(statuses)
+  $(this).data('status', newStatusObj.status())
 
-  $.post("/rerender_table", {"statuses[]": $.makeArray(statuses)}, function(responseData) {
-    $('table').html(responseData)
-  }, 'html')
-  //
-  // Need to get all the sunken points, hit points, missed points, available ships
-  // Send that over to the root endpoint
+  rerenderBody();
 })
+
+$(document).on('click', 'ul#ships input[type="checkbox"]', function() {
+  rerenderBody();
+})
+
+

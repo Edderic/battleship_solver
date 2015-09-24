@@ -26,8 +26,6 @@ module Battleship
       @ships = @tables_generator.ships
       @sunken_points = @tables_generator.sunken_points
       @table = rebuild_table
-
-      puts @table
     end
 
     def rebuild_table

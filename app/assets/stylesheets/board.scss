@@ -9,7 +9,7 @@ body {
 }
 
 form {
-
+  margin-right: 0.75em;
   display: inline-block;
 }
 ul {
@@ -41,11 +41,11 @@ table {
     }
 
     &[data-row][data-target='true'] {
-      border: 1px solid red;
+      border: 2px solid red;
     }
 
     &[data-row] {
-      border: 1px solid black;
+      border: 2px solid black;
     }
   }
 }
