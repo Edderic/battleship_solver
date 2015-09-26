@@ -17,6 +17,22 @@ body {
   font-family: "Helvetica Neue",sans-serif;
 }
 
+.left-column {
+  display: flex;
+  justify-content: center;
+  align-items: inherit;
+  flex-direction: column;
+}
+
+nav {
+  margin-bottom: 1em;
+  width: 6em;
+  font-size: xx-large;
+  /* text-align: right; */
+  font-weight: 100;
+  text-align: center;
+}
+
 html:before {
   content: "";
   position: fixed;
@@ -44,7 +60,6 @@ html:before {
 }
 
 form {
-  margin-right: 0.75em;
   display: inline-block;
 }
 
@@ -103,8 +118,9 @@ table {
     }
 
     &[data-row] {
-      border: 2px solid black;
+      border: 2px solid rgba(0,0,0,0.12);
       cursor: pointer;
+      font-weight: 300;
     }
   }
 }
