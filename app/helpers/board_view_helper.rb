@@ -6,10 +6,14 @@ module BoardViewHelper
       @max_abs_freq = @best_targets.first.abs_freq
     end
 
+    # def mini_status_at(row,col)
+#
+    # end
+
     def background_color_at(row,col)
       point = Battleship::Point.new(row: row, col: col)
       bgc_point = BoardViewHelper::BackgroundColor.new(point, @board, @max_abs_freq)
-      "rgb(#{bgc_point.red}, #{bgc_point.green}, #{bgc_point.blue});"
+      "rgba(#{bgc_point.red}, #{bgc_point.green}, #{bgc_point.blue}, 0.75);"
     end
 
     def status_at(row,col)
