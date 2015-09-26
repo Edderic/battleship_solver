@@ -30,12 +30,8 @@ html:before {
   background-position: center;
   background-attachment: fixed;
   height: 1200px;
-
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+  -webkit-filter: sepia(1) contrast(50%);
+  filter: sepia(1) contrast(50%);
 }
 
 .content {
@@ -88,6 +84,9 @@ table {
   border-radius: 1%;
 
   td {
+    padding: 0.5em;
+    color: white;
+    text-shadow: 2px 2px rgba(30,95,98,1);
     width: 50px;
     height: 50px;
     border-radius: 2%;
@@ -105,6 +104,7 @@ table {
 
     &[data-row] {
       border: 2px solid black;
+      cursor: pointer;
     }
   }
 }
