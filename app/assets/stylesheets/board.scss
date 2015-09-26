@@ -2,7 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 body {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/BB61_USS_Iowa_BB61_broadside_USN.jpg/1280px-BB61_USS_Iowa_BB61_broadside_USN.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,27 +23,47 @@ form {
   margin-right: 0.75em;
   display: inline-block;
 }
+
+table, form, ul {
+  border: 1px solid rgba(0,0,0,0);
+}
+
+table, ul {
+  background-color: rgba(92, 156, 163, 0.65);
+}
+
+ul, tr th, tr td.row-label {
+  color: #19E3E3;
+  text-shadow: 2px 2px rgba(30,95,98,1);
+}
+
 ul {
+  text-align: center;
+  margin: 0;
   display: inline-block;
   width: 3em;
-  border: 1px solid black;
   border-radius: 2%;
   padding: 1em;
   li {
     text-align: center;
     list-style-type: none;
   }
+
+  span {
+    display: inline-block;
+    margin-bottom: 1em;
+  }
 }
 
 table {
   display: inline-block;
-  border: 1px solid black;
   border-radius: 1%;
 
   td {
     width: 50px;
     height: 50px;
     border-radius: 2%;
+    text-align:center;
 
     &.row-label {
       width: 20px;
