@@ -10,7 +10,7 @@
     <tr>
       <td class='row-label'><%= row_index + 1%></th>
       <% row.each_with_index do |abs_freq, col_index| %>
-        <td data-row="<%= row_index+1 %>" data-col="<%= col_index+1 %>" data-target='<%= @board_view_helper.target_at(row_index+1, col_index+1) %>' data-status='<%= @board_view_helper.status_at(row_index+1, col_index+1) %>' style='background-color: <%= @board_view_helper.background_color_at(row_index+1, col_index+1) %>'><%= @board_view_helper.status_at(row_index+1, col_index+1) %></td>
+        <td data-row="<%= row_index+1 %>" data-col="<%= col_index+1 %>" data-target='<%= @board_view_helper.target_at(row_index+1, col_index+1) %>' data-status='<%= @board_view_helper.status_at(row_index+1, col_index+1) %>' style='background-color: <%= @board_view_helper.background_color_at(row_index+1, col_index+1) %>'><%= @board_view_helper.status_without_untried_at(row_index+1, col_index+1) %></td>
       <% end %>
     </tr>
   <% end %>

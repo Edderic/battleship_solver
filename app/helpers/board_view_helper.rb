@@ -16,6 +16,15 @@ module BoardViewHelper
       "rgba(#{bgc_point.red}, #{bgc_point.green}, #{bgc_point.blue}, 0.75);"
     end
 
+    def status_without_untried_at(row,col)
+      point = @board.point_at(row,col)
+      if point.untried?
+        ""
+      else
+        status_at(row,col)
+      end
+    end
+
     def status_at(row,col)
       point = @board.point_at(row,col)
       if point.sunk?
