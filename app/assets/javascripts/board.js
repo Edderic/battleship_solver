@@ -51,15 +51,18 @@ function rerenderBody() {
     return $(this).data('status')
   })
 
-  var ship_ids = $.makeArray($('#ships input[type=checkbox]').map(function() { return this.id; }))
+  var ship_ids = $.makeArray($('#ships input[type=checkbox]').map(function() { return $(this).data('id'); }))
   var ship_values = $.makeArray($('#ships input[type=checkbox]').map(function() { return this.checked; }))
+  var ship_length = $.makeArray($('#ships input[type=checkbox]').map(function() { return $(this).data('length'); }))
 
   var ships = []
 
   for(var i = 0; i < ship_ids.length; i++) {
     var ships_obj = {};
-    ships_obj[ship_ids[i]] = ship_values[i]
-    ships.push(JSON.stringify(ships_obj))
+    ships_obj['ship_id'] = ship_ids[i];
+    ships_obj['ship_value'] = ship_values[i];
+    ships_obj['ship_length'] = ship_length[i];
+    ships.push(JSON.stringify(ships_obj));
   }
 
   $.post("/rerender_table", {"statuses[]": $.makeArray(statuses), "ships[]": ships}, function(responseData) {

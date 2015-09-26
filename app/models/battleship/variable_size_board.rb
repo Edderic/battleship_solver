@@ -22,7 +22,6 @@ module Battleship
     end
 
     def reduced_table
-      # require 'pry'; binding.pry
       tg = tables_generator
       Battleship::ReducedTable.new(tg.abs_freqs,
                                    tg.num_total_configurations)

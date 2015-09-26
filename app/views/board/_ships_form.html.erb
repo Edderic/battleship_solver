@@ -1,17 +1,12 @@
 <%= form_tag("/search", method: "get") do %>
   <ul id="ships">
     <span>Sunken ships</span>
-    <% @ships = reduced_table.ships.clone %>
-    <% @lengths = @ships.map {|ship| ship.length } %>
-    <% @beginning_lengths = [5,4,3,3,2]%>
+    <% ships = ShipsViewHelper.ships(reduced_table.ships) %>
 
-    <% @beginning_lengths.each do |length| %>
+    <% ships.each_with_index do |ship, index| %>
       <li>
-      <%= label_tag("ship_#{length}".to_sym, "#{length}:") %>
-      <% num %>
-      <%= check_box_tag("ship_#{length}".to_sym, "1", !@lengths.any? {|lngt| lngt == length}) %>
-      <% @lengths.drop(1) %>
-      <% @beginning_lengths.drop(1) %>
+        <%= label_tag(ship.name, "#{ship.length}:") %>
+        <%= check_box_tag(ship.name, "1", ship.sunk?, data: { length: ship.length, id: ship.id } )%>
       </li>
     <% end %>
   </ul>

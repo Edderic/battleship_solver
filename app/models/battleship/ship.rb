@@ -1,15 +1,37 @@
 module Battleship
   class Ship
-    attr_reader :orientation, :starting_point, :length
+    attr_reader :orientation, :starting_point, :length, :id
     attr_accessor :table
 
+    ID_TO_LENGTH_MAPPING = {
+      "1" => "2",
+      "2" => "3",
+      "3" => "3",
+      "4" => "4",
+      "5" => "5",
+    }
+
+    def self.all_ids
+      [1,2,3,4,5]
+    end
+
     def initialize(hash)
-      @length = hash.fetch(:length)
+      @id = hash.fetch(:id) { :no_table_id_initialized }
+      @length = hash.fetch(:length) { :no_length_initialized }
+
+      if @length == :no_length_initialized
+        @length = ID_TO_LENGTH_MAPPING[@id.to_s]
+      end
+
       @table = hash.fetch(:table) { :no_table_initialized }
       @starting_point = hash.fetch(:starting_point) do
         Battleship::Point.new(row: 1, col: 1)
       end
       @sunk = hash.fetch(:sunk) { false }
+    end
+
+    def name
+      "ship_#{@id}"
     end
 
     def fully_sunk?
@@ -45,7 +67,6 @@ module Battleship
     def occupies_valid_points?
       fully_onboard? &&
         !occupies_a_missed_point? &&
-        # !occupies_a_sunk_point? &&
         occupied_points_unique?
     end
 
