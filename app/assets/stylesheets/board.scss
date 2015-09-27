@@ -12,20 +12,19 @@ html {
 body {
   display: flex;
   align-items: center;
-  justify-content: center;
   -webkit-font-smoothing: antialiased;
   font-family: "Helvetica Neue",sans-serif;
 }
 
 .left-column {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: inherit;
+  align-self: stretch;
   flex-direction: column;
 }
 
 nav {
-  margin-bottom: 5em;
   width: 6em;
   font-size: xx-large;
   font-weight: 100;
@@ -98,7 +97,6 @@ table {
   border-radius: 1%;
 
   td {
-    padding: 0.5em;
     color: white;
     text-shadow: 2px 2px rgba(30,95,98,1);
     width: 50px;
