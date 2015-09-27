@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 html {
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +13,8 @@ html {
 }
 
 body {
+  display: -webkit-flex;
+  -webkit-align-items: center;
   display: flex;
   align-items: center;
   -webkit-font-smoothing: antialiased;
@@ -22,6 +27,12 @@ body {
   align-items: inherit;
   align-self: stretch;
   flex-direction: column;
+
+  display: -webkit-flex;
+  -webkit-justify-content: space-around;
+  -webkit-align-items: inherit;
+  -webkit-align-self: stretch;
+  -webkit-flex-direction: column;
 }
 
 nav {
