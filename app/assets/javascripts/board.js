@@ -46,7 +46,7 @@ StatusHandler = function StatusHandler(status) {
   return new window[status.upcase()]()
 }
 
-function rerenderBody() {
+function rerenderBody(failCb) {
   var statuses = $('td[data-row]').map(function() {
     return $(this).data('status')
   })
@@ -67,15 +67,21 @@ function rerenderBody() {
 
   $.post("/rerender_table", {"statuses[]": $.makeArray(statuses), "ships[]": ships}, function(responseData) {
     $('body').html(responseData)
-  }, 'html')
+  }, 'html').fail(failCb)
 }
 
 $(document).on('click', 'td[data-row]', function() {
   var oldStatus = $(this).data('status');
   var newStatusObj = StatusHandler(oldStatus).next();
   $(this).data('status', newStatusObj.status())
+  var _self = this
 
-  rerenderBody();
+  function failCb() {
+    $(_self).data('status', 'hit')
+    rerenderBody();
+  }
+
+  rerenderBody(failCb);
 })
 
 $(document).on('click', 'ul#ships input[type="checkbox"]', function() {
